@@ -1,0 +1,44 @@
+{
+  "resource":"{proxy+}",
+  "path":"\/qr",
+  "httpMethod":"GET",
+  "headers":null,
+  "queryStringParameters":{
+    "start_date": "2018-05-13",
+    "bundle_id":"com.lc.robots.tanks.of.war.game",
+    "os":"android",
+    "columns":"country_code,city,user_id,version,os_version"
+  },
+  "pathParameters":{
+    "proxy":"qr"
+  },
+  "stageVariables":null,
+  "requestContext":{
+    "path":"\/{proxy+}",
+    "accountId":"325077465073",
+    "resourceId":"0startlwo02",
+    "stage":"test-invoke-stage",
+    "requestId":"test-invoke-request",
+    "identity":{
+      "cognitoIdentityPoolId":null,
+      "cognitoIdentityId":null,
+      "apiKey":"test-invoke-api-key",
+      "cognitoAuthenticationType":null,
+      "userArn":"arn:aws:iam::325077465073:root",
+      "apiKeyId":"test-invoke-api-key-id",
+      "userAgent":"userAgent",
+      "accountId":"325077465073",
+      "caller":"325077465073",
+      "sourceIp":"sourceIp",
+      "accessKey":"ASIAJMOBN7LH6VZNKOTA",
+      "cognitoAuthenticationProvider":null,
+      "user":"325077465073"
+    },
+    "resourcePath":"\/{proxy+}",
+    "httpMethod":"GET",
+    "extendedRequestId":"test-invoke-extendedRequestId",
+    "apiId":"8rqf9i9s0d"
+  },
+  "body":null,
+  "isBase64Encoded":false
+}
