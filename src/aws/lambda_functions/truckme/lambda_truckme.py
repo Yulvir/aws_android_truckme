@@ -7,8 +7,8 @@ import base64
 import datetime
 from io import BytesIO
 from hurry.filesize import size
-
-if os.uname()[1] == "ncarvalho-HP-ENVY-Notebook":
+import psycopg2
+if os.uname()[1] == "ncarvalho-GL502VMK":
     import library_functions.library_functions.logger.logger_configurator as logger_configurator
 else:
     import library_functions.logger.logger_configurator as logger_configurator
@@ -55,12 +55,12 @@ def create_response(message):
     logger.info(f'Response data on "Body" before encoding is ==> {message}')
 
     #body_message = gzip_b64encode(message)
+    body_message = base64.b64encode(message).encode("UTF-8")
 
-    print(2)
     return {
         "isBase64Encoded": True,
         'statusCode': 200,
-        'body': base64.b64encode(message.tobytes()),
+        'body': json.dumps(body_message),
         'headers': {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
@@ -70,6 +70,27 @@ def create_response(message):
 
 
 def lambda_handler(event, context):
+    try:
+        conn = psycopg2.connect("dbname='PostgresqlTruckme' "
+                                "user='cresko' "
+                                "host='postgresql.cleytat6tuvh.us-east-2.rds.amazonaws.com' "
+                                "password='postgresql-truckme' "
+                                "connect_timeout=5")
+
+        cur = conn.cursor()
+        cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
+        cur.execute("INSERT INTO test (num, data) VALUES (%s, %s)",(100, "abc'def"))
+        cur.execute("SELECT * FROM test;")
+        cur.fetchone()
+        conn.commit()
+        cur.close()
+        conn.close()
+
+    except Exception as e:
+        logger.error(msg=" Couldn't connect to posgres", extra={"ERROR": e})
+
+        return create_response(e)
+
 
     if 'body' in event:
         event = event

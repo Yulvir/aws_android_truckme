@@ -9,5 +9,5 @@ setup(name='library_functions',
       author='Truckme',
       author_email='null@example.com',
       packages=find_packages(),
-      install_requires=['boto3', 'qrcode', 'awscli', 'pillow', 'hurry.filesize'],
+      install_requires=['boto3', 'qrcode', 'awscli', 'pillow', 'hurry.filesize', 'psycopg2'],
       zip_safe=False)
